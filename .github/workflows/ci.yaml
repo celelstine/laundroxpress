@@ -1,0 +1,52 @@
+name: LaundroXpress CI workflow
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+  push:
+    branches
+      - master
+      - develop
+
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    services:
+      laundroxpress-db:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: laundroxpress
+        port:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: cache dependencies # would make build faster
+        uses: actions/cache@v2  # for more info checkout pip section documentation at https://github.com/actions/cache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+        - name: Setup python environment # setting python environment to 3.x
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.8'
+        - name: Install requirements # install application requirements
+          run: pip install -r requirements.txt
+        - name: Check Syntax # check code formatting
+          run: pycodestyle --statistics .
+        - name: Run Migrations
+          run: python manage.py migrate
+        - name: Run Test
+          run: python manage.py test
+          env:
+            GITHUB_WORKFLOW: CI
