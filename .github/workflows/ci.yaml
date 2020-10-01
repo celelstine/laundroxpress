@@ -41,8 +41,8 @@ jobs:
           python-version: '3.8'
       - name: Install requirements # install application requirements
         run: pip install -r requirements.txt
-      - name: Check Syntax # check code formatting
-        run: pycodestyle --statistics .
+      # - name: Check Syntax # check code formatting
+       # run: pycodestyle --statistics .
       - name: Run Migrations
         run: python manage.py migrate
       - name: Run Test
