@@ -9,7 +9,7 @@ ref: https://docs.docker.com/compose/django/
 
 - create a dockerfile for the django project
 - create a docker stack with docker compose with includes 2 services: django project for playing and a postgres db
-- create a django project with docker compose `docker-compose run web django-admin startproject laundroxpress .`
+- create a django project with docker compose `docker-compose run web django-admin startproject laundroxpress-app .`
 - grant permission to current user or a user of your choice `sudo chown -R $USER:$USER .`
 - update the database settings for the django app
 - rename project module to `config` and rename every reference
