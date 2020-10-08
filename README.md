@@ -21,4 +21,4 @@ ref: https://docs.docker.com/compose/django/
 ## How to setup this project
 These project was built to run on docker so the setup below would not be suitable for non-docker environment
 
-To start the project simply run `make up` then access the project at `localhost:80o0`
+To start the project simply run `make up` then access the project at `localhost:8000`
