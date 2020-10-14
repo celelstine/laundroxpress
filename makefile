@@ -64,3 +64,15 @@ rmvolumes:
 
 test: clean
 	docker-compose run laundroxpress-app python manage.py test -v 2 ${CASE}
+
+
+check_flake8:
+	pip install flake8
+	flake8
+
+check_code_quality: check_flake8
+	docker-compose exec laundroxpress-app pip install coverage codecov
+	docker-compose exec laundroxpress-app coverage erase
+	docker-compose exec laundroxpress-app coverage run manage.py test --verbosity 2
+	docker-compose exec laundroxpress-app coverage report --fail-under=70 --show-missing
+	docker-compose exec laundroxpress-app coverage html

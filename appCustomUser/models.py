@@ -1,13 +1,9 @@
 from django.db import models
 
-# Create your models here.
-
 from django.contrib.auth.models import (
     AbstractUser,
     BaseUserManager
 )
-
-from utils.model_mixins import BaseAppModelMixin
 
 
 class AppUserManager(BaseUserManager):
