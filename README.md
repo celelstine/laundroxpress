@@ -1,3 +1,6 @@
+[![CI Actions Status](https://github.com/celelstine/laundroxpress/workflows/LaundroXpress CI workflow/badge.svg)](https://github.com/{celelstine}/laundroxpress/actions)
+[![codecov](https://codecov.io/gh/celelstine/laundroxpress/branch/master/graph/badge.svg?token=EXH3IH4V7L)](https://codecov.io/gh/celelstine)
+
 # laundroxpress
 web application for laundroxpress
 
