@@ -71,8 +71,8 @@ check_flake8:
 	flake8
 
 check_code_quality: check_flake8
-	docker-compose exec laundroxpress-app pip install coverage codecov
-	docker-compose exec laundroxpress-app coverage erase
-	docker-compose exec laundroxpress-app coverage run manage.py test --verbosity 2
-	docker-compose exec laundroxpress-app coverage report --fail-under=70 --show-missing
-	docker-compose exec laundroxpress-app coverage html
+	pip install coverage codecov
+	coverage erase
+	coverage run manage.py test --verbosity 2
+	coverage report --fail-under=70 --show-missing
+	coverage html
