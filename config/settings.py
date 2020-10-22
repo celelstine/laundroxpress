@@ -89,7 +89,7 @@ if os.environ.get('GITHUB_WORKFLOW'):
             'PORT': '5432'
         }
     }
-else:
+elif os.environ.get('DOCKER_ENV'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -100,7 +100,13 @@ else:
             'PORT': os.environ.get('DB_PORT', '5432'),
         }
     }
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'laundroxpress_db',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
