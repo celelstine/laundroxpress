@@ -28,7 +28,7 @@ DEBUG = os.environ.get('DEBUG', True),
 # custom user model
 AUTH_USER_MODEL = 'appCustomUser.User'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['laundroxpress-dev-env.eba-jhqmq9ke.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
