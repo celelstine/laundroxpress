@@ -55,6 +55,9 @@ class User(AbstractUser):
         unique=True,
     )
     username = models.TextField(blank=True, null=True)
+    phone_number = models.CharField(
+        blank=True, null=True, unique=True, max_length=25)
+    address = models.TextField(blank=True, null=True)
 
     objects = AppUserManager()
 

@@ -131,3 +131,5 @@ dmypy.json
 
 # setup 
 docker-compose-vars.env
+
+/media/
