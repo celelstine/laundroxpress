@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField(default=True)),
                 ('title', models.CharField(max_length=60, unique=True)),
                 ('desciption', models.TextField(blank=True, null=True)),
-                ('image', models.ImageField(blank=True, max_length=512, null=True, upload_to=laundro.models.questionset_logo_upload_path, validators=[laundro.vallidators.validate_image_file_extension])),
+                ('image', models.ImageField(blank=True, max_length=512, null=True, upload_to=laundro.models.get_service_image_upload_path, validators=[laundro.vallidators.validate_image_file_extension])),
             ],
             options={
                 'abstract': False,
