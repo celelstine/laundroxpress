@@ -28,7 +28,10 @@ DEBUG = os.environ.get('DEBUG', True),
 # custom user model
 AUTH_USER_MODEL = 'appCustomUser.User'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'laundroxpress-dev-env.eba-ry8mnxvi.us-west-2.elasticbeanstalk.com',
+    'localhost'
+]
 
 
 # Application definition
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'laundro.apps.LaundroConfig',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +92,7 @@ if os.environ.get('GITHUB_WORKFLOW'):
             'PORT': '5432'
         }
     }
-else:
+elif os.environ.get('DOCKER_ENV'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -99,7 +103,24 @@ else:
             'PORT': os.environ.get('DB_PORT', '5432'),
         }
     }
-
+elif os.environ.get('RDS_DB_NAME'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('RDS_DB_NAME', 'laundroxpress'),
+            'USER': os.environ.get('RDS_USERNAME', 'postgres'),
+            'PASSWORD': os.environ.get('RDS_PASSWORD', 'password'),
+            'HOST': os.environ.get('RDS_HOSTNAME', 'laundroxpress-db'),
+            'PORT': os.environ.get('RDS_PORT', '5432'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'laundroxpress_db',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -138,3 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

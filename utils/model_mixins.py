@@ -24,7 +24,17 @@ class UUIDMixin(models.Model):
         abstract = True
 
 
-class BaseAppModelMixin(UUIDMixin, TimeStampMixin):
+class StatusMixin(models.Model):
+    """
+    Generic status field for objects
+    """
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        abstract = True
+
+
+class BaseAppModelMixin(UUIDMixin, TimeStampMixin, StatusMixin):
     """
     Base mixin that all models will use
     """

@@ -131,3 +131,9 @@ dmypy.json
 
 # setup 
 docker-compose-vars.env
+
+/media/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
